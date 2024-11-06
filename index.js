@@ -1,27 +1,17 @@
-const express = require('express');
-const app = express();
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-// Middleware to parse JSON data in the request body
-app.use(express.json());
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-// Simple GET route to test
-app.get("/", (req, res) => {
-    res.send("Hello, Timetable API is working!");
-});
-
-// Your POST route for adding timetable entries
-app.post('/api/timetable/:section', (req, res) => {
-    const section = req.params.section;
-    const timetableEntry = req.body;
-    console.log(`Adding timetable entry for section ${section}:`, timetableEntry);
-    res.status(200).json({
-        message: `Timetable entry added for section ${section}`,
-        data: timetableEntry
-    });
-});
-
-// Start the server
-const PORT = 5000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
